@@ -1,15 +1,17 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
 namespace Larva
 {
-    public enum GameState // TODO: flag 추가
+    [Flags]
+    public enum GameState
     {
-        Playing,      // 게임 플레이어 상태
-        Pausing,      // 게임 일지정지 상태 (네트워크 딜레이)
-        GameOvered,   // 게임 오버 상태
-        Stopped,      // 게임 중단 상태
+        Playing = 1,      // 게임 플레이 상태
+        Pausing = 2,      // 게임 일지정지 상태 (네트워크 딜레이)
+        GameOvered = 4,   // 게임 오버 상태
+        Stopped = 8,      // 게임 중단 상태
     }
 
     public enum GamePhase
