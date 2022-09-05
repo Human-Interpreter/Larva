@@ -4,10 +4,12 @@ using Mirror;
 
 namespace Larva
 {
-    delegate void CardActionEventDelegate(CardObject card);
+    public delegate void CardActionEventDelegate(CardObject card);
 
     public class CardManager : NetworkBehaviour
     {
+        public event CardActionEventDelegate CardActionEvent;
+
         public List<CardData> CardDeck = new();
 
         [Command]
