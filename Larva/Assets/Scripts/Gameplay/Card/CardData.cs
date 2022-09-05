@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Larva
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/Card Data", fileName = "CardData", order = int.MaxValue)]
-    class CardData : ScriptableObject
+    public class CardData : ScriptableObject
     {
         public string Name;
         public bool IsRareCard;

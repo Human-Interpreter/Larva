@@ -4,7 +4,7 @@ using Mirror;
 
 namespace Larva
 {
-    enum GameState // TODO: flag 추가
+    public enum GameState // TODO: flag 추가
     {
         Playing,      // 게임 플레이어 상태
         Pausing,      // 게임 일지정지 상태 (네트워크 딜레이)
@@ -12,7 +12,7 @@ namespace Larva
         Stopped,      // 게임 중단 상태
     }
 
-    enum GamePhase
+    public enum GamePhase
     {
         DayDebate,         // 1. 낮 시민토론
         DayVote,           // 2. 낮 시민투표
@@ -22,7 +22,7 @@ namespace Larva
         NightCardResult    // 6. 밤 카드 결과 확인
     }
 
-    class GameManager : NetworkBehaviour
+    public class GameManager : NetworkBehaviour
     {
         public static GameManager Singleton = null;
 
