@@ -27,7 +27,7 @@ namespace Larva
         public void SendNextCardAction()
         {}
 
-        public void IsEmpty() => this.puttedCards.IsEmpty();
+        public bool IsEmpty() => this.puttedCards.IsEmpty();
 
         private PriorityQueue<uint, CardObject> puttedCards = new((a, b) => a.Priority < b.Priority);
     }
