@@ -130,6 +130,8 @@ namespace Larva
             if (GameManager.Singleton != null && GameManager.Singleton == this)
             {
                 // 현재 Scene에 이미 GameManager가 존재한다면 지금 GameManaer는 Destroy함.
+                Debug.LogWarning("GameManager가 이미 존재하기 때문에 현재 GameManager는 파괴되었습니다.");
+
                 Destroy(this.gameObject);
             }
             else
