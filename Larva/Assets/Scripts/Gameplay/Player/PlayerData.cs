@@ -4,6 +4,7 @@ namespace Larva
 {
     /// <summary>
     /// 플레이어의 정보를 전역적으로 저장하는 클래스
+    /// (static class)
     /// </summary>
     public static class PlayerData {
         /// <summary>
