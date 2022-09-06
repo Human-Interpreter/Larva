@@ -140,5 +140,23 @@ namespace Larva
                 GameManager.Singleton = this;
             }
         }
+
+        private void Update()
+        {
+            if (!this.isServer)
+            {
+                return;
+            }
+
+            // TODO: PlayTime 증가
+
+            // TODO: PhaseTimeout 감소
+
+            // TODO: PhaseTimeout이 0이하가 되면 다음 Phase로 변경
+
+            // TODO: Phase 사이클이 한 번 돌고 나면 CurrentTurn 증감
+
+            // TODO: 현재 Phase를 확인하고 각 Phase에 적합한 행동 진행
+        }
     }
 }
