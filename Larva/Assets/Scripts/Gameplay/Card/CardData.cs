@@ -27,7 +27,9 @@ namespace Larva
         /// <summary>
         /// 카드의 그림
         /// </summary>
-        public Sprite FrontSprite;
+        // FIXME: MIRROR가 전송 거부함 (지원 안해줌)
+        // TODO: https://mirror-networking.gitbook.io/docs/guides/serialization#properties-example
+        // public Sprite FrontSprite;
         
         /// <summary>
         /// 카드가 한 번 사용된 이후 일정 턴이 지난 후에 다시 카드를 사용할 수 있도록 함
