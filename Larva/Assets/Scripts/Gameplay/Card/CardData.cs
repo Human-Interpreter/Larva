@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Larva
 {
     /// <summary>
-    /// 카드의 정보를 보관
+    /// 카드의 정보를 보관 (ScriptableObject)
     /// </summary>
     [CreateAssetMenu(menuName = "ScriptableObjects/Card Data", fileName = "CardData", order = int.MaxValue)]
     public class CardData : ScriptableObject
