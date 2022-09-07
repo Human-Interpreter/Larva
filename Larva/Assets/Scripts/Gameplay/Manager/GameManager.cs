@@ -76,8 +76,7 @@ namespace Larva
     public class GameManager : NetworkBehaviour
     {
         /// <summary>
-        /// 다른 클래스에서 간단하게 GameManager로 접근가능 하며,
-        /// 같은 Scene에 하나의 GameManager만 존재해야 한다.
+        /// GameManager Singleton
         /// </summary>
         public static GameManager Singleton = null;
 
