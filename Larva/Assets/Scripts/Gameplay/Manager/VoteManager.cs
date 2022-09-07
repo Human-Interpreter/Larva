@@ -10,6 +10,11 @@ namespace Larva
     public class VoteManager : NetworkBehaviour
     {
         /// <summary>
+        /// VoteManager Singleton
+        /// </summary>
+        public static VoteManager Singleton = null;
+        
+        /// <summary>
         /// 현재 투표 가능 여부
         /// </summary>
         public bool IsVotable = false;
@@ -18,6 +23,23 @@ namespace Larva
         /// 투표 가능한 팀 구분
         /// </summary>
         public TeamType VotableTeam;
+
+        private void Awake()
+        {
+            // Singleton 패턴
+            if (VoteManager.Singleton != null && VoteManager.Singleton == this)
+            {
+                // 현재 Scene에 이미 VoteManager가 존재한다면 지금 VoteManager는 Destroy함.
+                Debug.LogWarning("VoteManager가 이미 존재하기 때문에 현재 VoteManager는 파괴되었습니다.");
+
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                // 현재 Scene에 VoteManager가 존재하지 않는다면 지금 VoteManager를 Singleton으로 설정함.
+                VoteManager.Singleton = this;
+            }
+        }
 
         /// <summary>
         /// 투표 초기화

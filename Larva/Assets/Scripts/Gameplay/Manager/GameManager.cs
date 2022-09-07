@@ -111,18 +111,6 @@ namespace Larva
         [SyncVar]
         public float PhaseTimeout;
 
-        /// <summary>
-        /// CardManager를 전역적으로 보관함.
-        /// </summary>
-        [SyncVar]
-        public CardManager Card;
-
-        /// <summary>
-        /// VoteManager를 전역적으로 보관함.
-        /// </summary>
-        [SyncVar]
-        public VoteManager Vote;
-
         private void Awake()
         {
             // Singleton 패턴

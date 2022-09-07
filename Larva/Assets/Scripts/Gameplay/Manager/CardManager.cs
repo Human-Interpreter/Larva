@@ -18,6 +18,11 @@ namespace Larva
     public class CardManager : NetworkBehaviour
     {
         /// <summary>
+        /// CardManager Singleton
+        /// </summary>
+        public static CardManager Singleton = null;
+
+        /// <summary>
         /// 카드 액션이 발생할때 트리거되는 이벤트
         /// </summary>
         public event CardActionEventDelegate CardActionEvent;
@@ -27,6 +32,22 @@ namespace Larva
         /// </summary>
         public List<CardData> CardDeck = new();
 
+        private void Awake()
+        {
+            // Singleton 패턴
+            if (CardManager.Singleton != null && CardManager.Singleton == this)
+            {
+                // 현재 Scene에 이미 CardManager가 존재한다면 지금 CardManager는 Destroy함.
+                Debug.LogWarning("CardManager가 이미 존재하기 때문에 현재 CardManager는 파괴되었습니다.");
+
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                // 현재 Scene에 CardManager가 존재하지 않는다면 지금 CardManager를 Singleton으로 설정함.
+                CardManager.Singleton = this;
+            }
+        }
 
         /// <summary>
         /// 플레이어가 새로운 카드를 요청하는 함수
