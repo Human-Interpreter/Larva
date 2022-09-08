@@ -87,6 +87,7 @@ public class PriorityQueue<T, U>
     /// <summary>
     /// 가장 우선순위가 높은(혹은 낮은) 데이터를 하나 꺼냄
     /// </summary>
+    /// <exception cref="System.Exception">데이터가 없을 때 예외가 발생</exception>
     /// <returns>우선순위와 값을 Pair로 반환</returns>
     public Pair Pop()
     {
