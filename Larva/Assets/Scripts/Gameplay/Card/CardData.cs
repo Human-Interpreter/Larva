@@ -9,7 +9,7 @@ namespace Larva
     public class CardData : ScriptableObject
     {
         /// <summary>
-        /// 카드의 이름
+        /// 카드의 이름 (카드의 이름은 고유해야 함)
         /// </summary>
         public string Name;
         
