@@ -80,6 +80,6 @@ namespace Larva
         /// <summary>
         /// 투표 결과 보관
         /// </summary>
-        private Dictionary<Player, Player> voteData = new();
+        private Dictionary<Player, uint> voteData = new();
     }
 }
