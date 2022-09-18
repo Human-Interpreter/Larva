@@ -44,5 +44,10 @@ namespace Larva
         /// 카드 액션 함수의 실행 우선순위
         /// </summary>
         public int Priority;
+
+        /// <summary>
+        /// 카드 액션 클래스 이름
+        /// </summary>
+        public string ActionClassName;
     }
 }
