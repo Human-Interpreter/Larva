@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
@@ -31,6 +32,12 @@ namespace Larva
         /// 게임에 사용되는 카드 데이터를 보관함.
         /// </summary>
         public List<CardData> CardDeck = new();
+
+        /// <summary>
+        /// 플레이어가 소유하고 있는 카드를 보관함.
+        /// </summary>
+        private Dictionary<long, CardIdentity> playerCards = new();
+
 
         private void Awake()
         {
