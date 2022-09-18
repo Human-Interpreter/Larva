@@ -42,11 +42,16 @@ namespace Larva
         }
 
         /// <summary>
-        /// 투표 초기화
+        /// 투표 초기화 (새로운 투표 시작)
         /// </summary>
         /// <param name="votableTeam">투표 가능한 팀 설정</param>
+        [Server]
         public void Reset(TeamType votableTeam)
-        {}
+        {
+            this.voteData.Clear();
+            this.IsVotable = true;
+            this.VotableTeam = votableTeam;
+        }
 
         /// <summary>
         /// 플레이어의 투표 요청
@@ -54,19 +59,30 @@ namespace Larva
         /// <param name="identity">네트워크 ID</param>
         /// <param name="fromPlayer">투표한 플레이어</param>
         /// <param name="toPlayer">투표 당한 플레이어</param>
-        [Command]
-        public void CmdVote(NetworkIdentity identity, Player fromPlayer, Player toPlayer)
-        {}
+        [Server]
+        public void Vote(NetworkIdentity identity, Player fromPlayer, Player toPlayer)
+        {
+            // [REQUEST FROM]
+            // fromPlayer.CmdVote -> 
+
+            // TODO: 요청이 요효한지 확인 (투표가능 여부, 투표가능 팀, 중복투표 확인)
+            // TODO: 투표 요청 반영
+
+            // [RESPONSE TO]
+            // -> fromPlayer.TargetVoteResponse
+            // TODO: fromPlayer.TargetVoteResponse()
+        }
 
         /// <summary>
-        /// 플레이어 투표 요청 응답
+        /// 투표 결과를 플레이어에게 공지
         /// </summary>
-        /// <param name="target">네트워크 Target</param>
-        /// <param name="result">투표 요청 결과</param>
-        /// <param name="message">에러 메세지</param>
-        [TargetRpc]
-        public void TargetError(NetworkConnection target, bool result, string message)
-        {}
+        [Server]
+        public void VoteResult()
+        {
+            // [SEND TO]
+            // -> this.RpcVoteResult
+            // TODO: this.RpcVoteResult()
+        }
 
         /// <summary>
         /// 투표 결과를 모든 플레이어에게 공지
@@ -75,7 +91,12 @@ namespace Larva
         /// <param name="count">득표수</param>
         [ClientRpc]
         public void RpcVoteResult(Player player, int count)
-        {}
+        {
+            // [RECEIVE FROM]
+            // this.VoteResult -> 
+            // TODO: 투표 결과 공지
+            // TODO: 이벤트 트리거
+        }
 
         /// <summary>
         /// 투표 결과 보관
