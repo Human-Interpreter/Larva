@@ -26,8 +26,14 @@ public class PriorityQueue<T, U>
     /// <summary>
     /// 우선순위 비교 함수
     /// </summary>
-    /// <param name="a">Pair A</param>
-    /// <param name="b">Pair B</param>
+    /// <example>
+    /// 우선순위 오름차순인 경우
+    /// <code>
+    /// (a, b) => a.Priority < b.Priority
+    /// </code>
+    /// </example>
+    /// <param name="a">Pair A (부모, 상위 노드)</param>
+    /// <param name="b">Pair B (자식, 하위 노드)</param>
     /// <returns></returns>
     public delegate bool Compare(Pair a, Pair b);
 
