@@ -57,6 +57,36 @@ namespace Larva
         }
 
         /// <summary>
+        /// 새로운 카드 식별자를 생성
+        /// </summary>
+        /// <param name="cardName">카드 이름 (CardData)</param>
+        /// <param name="player">플레이어</param>
+        /// <returns>카드 식별자</returns>
+        [Server]
+        private CardIdentity CreateCardIdentity(string cardName, Player player)
+        {
+            // Add game object
+            var gameObject = new GameObject(cardName);
+            gameObject.transform.parent = player.transform;
+
+            // Add card identity component
+            var cardIdentity = gameObject.AddComponent<CardIdentity>();
+            cardIdentity.Owner = player;
+            cardIdentity.CardName = cardName;
+
+            // CardId는 현재 UTC시간을 timestamp로 변환한 값을 사용합니다.
+            // (Id가 중복되는 현상을 막기 위함)
+            cardIdentity.CardId = (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds;
+            Debug.Log($"CardId: {cardIdentity.CardId}");
+
+            // Add player card
+            this.playerCards[cardIdentity.CardId] = cardIdentity;
+
+            // return card identity
+            return cardIdentity;
+        }
+
+        /// <summary>
         /// 플레이어가 새로운 카드를 요청하는 함수
         /// </summary>
         /// <param name="identity">Player Identity</param>
