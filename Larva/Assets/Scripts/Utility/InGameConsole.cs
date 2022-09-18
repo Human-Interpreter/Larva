@@ -8,6 +8,16 @@ namespace Larva
     public class InGameConsole : MonoBehaviour
     {
         /// <summary>
+        /// Console 위치와 크기
+        /// </summary>
+        public Rect ConsoleRect;
+
+        /// <summary>
+        /// 오른쪽 기준 위치
+        /// </summary>
+        public bool IsRightSide = true;
+
+        /// <summary>
         /// 화면 표시 여부
         /// </summary>
         public bool IsVisible = true;
@@ -33,8 +43,17 @@ namespace Larva
                 return;
             }
 
+            // Console 위치, 크기 설정
+            var rect = new Rect(this.ConsoleRect);
+
+            if (this.IsRightSide)
+            {
+                // 오른쪽 기준으로 위치 변경
+                rect.x = Screen.width - rect.width - rect.x;
+            }
+
             // 화면 표시
-            GUI.TextArea(new Rect(Screen.width - 510, 10, 500, 300), this.debugMessage);
+            GUI.TextArea(rect, this.debugMessage);
         }
     }
 }
