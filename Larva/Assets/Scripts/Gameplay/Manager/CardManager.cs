@@ -38,7 +38,6 @@ namespace Larva
         /// </summary>
         private Dictionary<long, CardIdentity> playerCards = new();
 
-
         private void Awake()
         {
             // Singleton 패턴
@@ -91,44 +90,91 @@ namespace Larva
         /// </summary>
         /// <param name="identity">Player Identity</param>
         /// <param name="player">Player</param>
-        [Command]
-        public void CmdGetCard(NetworkIdentity identity, Player player)
-        {}
+        [Server]
+        public void GetCard(NetworkIdentity identity, Player player)
+        {
+            // [REQUEST FROM]
+            // player.CmdGetCard -> 
+
+            // TODO: 요청에 문제 없는지 확인 후 문제가 있다면 오류 응답을 전송
+            // TODO: 카드 추가: this.CreateCardIdentity()
+
+            // [RESPONSE TO]
+            // -> player.TargetGetCardResponse
+            // TODO: player.TargetGetCardResponse()
+        }
 
         /// <summary>
         /// 플레이어가 소유한 카드들을 조합하여 새로운 카드를 요청하는 함수
         /// </summary>
         /// <param name="identity">Player Identity</param>
         /// <param name="player">Player</param>
-        /// <param name="cards">조합 카드들</param>
-        [Command]
-        public void CmdGetCardWithCombination(NetworkIdentity identity, Player player, CardObject[] cards)
-        {}
+        /// <param name="cardIds">조합 카드들 ID</param>
+        [Server]
+        public void GetCardWithCombination(NetworkIdentity identity, Player player, long[] cardIds)
+        {
+            // [REQUEST FROM]
+            // player.CmdGetCardWithCombination -> 
+
+            // TODO: 요청에 문제 없는지 확인 후 문제가 있다면 오류 응답을 전송
+            // TODO: 카드 추가: this.CreateCardIdentity()
+
+            // [RESPONSE TO]
+            // -> player.TargetGetCardResponse
+            // TODO: player.TargetGetCardResponse()
+        }
 
         /// <summary>
         /// 플레이어가 소유한 카드를 사용하기 위해 내놓은 함수
         /// </summary>
         /// <param name="player">Player</param>
         /// <param name="card">사용할 카드</param>
-        [Command]
-        public void CmdPutCard(Player player, CardObject card)
-        {}
-
-        /// <summary>
-        /// 사용대기 중인 카드 중에서 가장 우선순위가 높은 카드를 한장 선택하여 액션 함수를 호출함.
-        /// </summary>
-        /// <param name="card">사용을 위해 선택된 카드</param>
-        [ClientRpc]
-        public void RpcRunNextCardAction(CardObject card)
-        {}
-
-        /// <summary>
-        /// 서버에서 사용대기 중인 카드 중에서 가장 우선순휘가 높은 카드를 한장 선택한 다음 
-        /// 클라이언트에서 실행될 수 있도록 RpcRunNextCardAction 함수를 호출함.
-        /// </summary>
-        public void SendNextCardAction()
+        [Server]
+        public void PutCard(NetworkIdentity identity, Player player, long cardId)
         {
-            // TODO: PriorityQueue.Pop() 도중에 예외가 발생할 수 있으므로 예외 처리 혹은 IsEmpty 함수를 적절히 활용하여 구현
+            // [REQUEST FROM]
+            // player.CmdGetCard -> 
+
+            // TODO: 요청에 문제 없는지 확인 후 문제가 있다면 오류 응답을 전송
+            // TODO: 대기열에 카드 추가: this.puttedCards.Push()
+
+            // [RESPONSE TO]
+            // -> player.TargetPutCardResponse
+            // TODO: player.TargetPutCardResponse()
+        }
+
+        /// <summary>
+        /// 서버에서 사용대기 중인 카드들을 모두 활성화
+        /// </summary>
+        [Server]
+        public void ActiveAllPuttedCards()
+        {
+            // 대기열에 있는 모든 카드를 조회
+            while (!this.IsEmpty())
+            {
+                // 카드 식별자를 가져옴
+                var card = this.puttedCards.Pop().Value;
+                // 카드 데이터를 가져옴
+                var data = card.GetData();
+
+                // Reflection을 사용해서 카드 액션 클래스를 불러온다.
+                Type cardActionType = Type.GetType($"Larva.{data.ActionClassName}");
+                
+                if (cardActionType == null)
+                {
+                    // 클래스 명을 찾을 수 없거나 잘못된 클래스 명을 사용.
+                    throw new Exception("cardActionType is null");
+                }
+
+                if (!typeof(MonoBehaviour).IsAssignableFrom(cardActionType))
+                {
+                    // 해당 클래스가 MonoBehaviour를 상속 받지 않음.
+                    throw new Exception("cardActionType is not assignable from MonoBehaviour");
+                }
+
+                // card action 추가
+                card.gameObject.AddComponent(cardActionType);
+            }
         }
 
         /// <summary>
