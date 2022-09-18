@@ -12,6 +12,12 @@ namespace Larva
         /// 카드의 이름 (카드의 이름은 고유해야 함)
         /// </summary>
         public string Name;
+
+        /// <summary>
+        /// 카드 효과 설명
+        /// </summary>
+        [TextArea]
+        public string Explanation;
         
         /// <summary>
         /// 해당 카드의 레어카드 여부를 저장
