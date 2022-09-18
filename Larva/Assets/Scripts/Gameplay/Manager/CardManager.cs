@@ -138,8 +138,8 @@ namespace Larva
         public bool IsEmpty() => this.puttedCards.IsEmpty();
 
         /// <summary>
-        /// 사용대기 중인 카드들을 우선순위에 따라서 오름차순 정렬해 저장함.
+        /// 사용대기 중인 카드들을 우선순위에 따라서 내림차순 정렬해 저장함.
         /// </summary>
-        private PriorityQueue<int, CardIdentity> puttedCards = new((a, b) => a.Priority < b.Priority);
+        private PriorityQueue<int, CardIdentity> puttedCards = new((a, b) => a.Priority > b.Priority);
     }
 }
