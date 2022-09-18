@@ -58,8 +58,7 @@ namespace Larva
         /// 플레이어가 소유한 카드들
         /// </summary>
         /// <returns></returns>
-        [SyncVar]
-        public List<CardObject> Cards = new();
+        public List<CardIdentity> Cards = new();
 
         /// <summary>
         /// CardManager로 부터 카드를 받은 경우 호출되는 함수
