@@ -168,6 +168,8 @@ namespace Larva
 
                 // card action 추가
                 card.gameObject.AddComponent(cardActionType);
+
+                // TODO: CardActionEvent 이벤트 트리거
             }
         }
 
