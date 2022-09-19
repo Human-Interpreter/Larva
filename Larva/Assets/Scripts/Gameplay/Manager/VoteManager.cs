@@ -35,6 +35,11 @@ namespace Larva
         /// </summary>
         public event EventHandler PlayerVoteEvent;
 
+        /// <summary>
+        /// 투표 결과가 공지될 때 트리거되는 이벤트
+        /// </summary>
+        public event EventHandler VoteResultEvent;
+
         private void Awake()
         {
             // Singleton 패턴
@@ -96,6 +101,7 @@ namespace Larva
             // [SEND TO]
             // -> this.RpcVoteResult
             // TODO: this.RpcVoteResult()
+            // TODO: VoteResultEvent 이벤트 트리거 (for Server)
         }
 
         /// <summary>
@@ -109,7 +115,7 @@ namespace Larva
             // [RECEIVE FROM]
             // this.VoteResult -> 
             // TODO: 투표 결과 공지
-            // TODO: 이벤트 트리거
+            // TODO: VoteResultEvent 이벤트 트리거 (for Client)
         }
 
         /// <summary>
