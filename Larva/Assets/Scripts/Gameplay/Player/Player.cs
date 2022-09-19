@@ -158,22 +158,22 @@ namespace Larva
         /// CmdPutCard 응답 함수
         /// </summary>
         /// <param name="conn">클라이언트 연결</param>
-        /// <param name="cardIdOrNull">카드 ID 혹은 NULL (NULL인 경우 오류)</param>
+        /// <param name="cardId">카드 ID 혹은 NULL (NULL인 경우 오류)</param>
         /// <param name="responseMessage">응답 메세지</param>
         [TargetRpc]
-        public void TargetPutCardResponse(NetworkConnection conn, long cardIdOrNull, string responseMessage)
+        public void TargetPutCardResponse(NetworkConnection conn, long cardId, string responseMessage)
         {
             // [RESPONSE FROM]
             // CardManager.PutCard -> 
 
-            if (cardIdOrNull < 0)
+            if (cardId < 0)
             {
                 // TODO: 예외 처리 코드 추가
                 return;
             }
 
             // 해당 카드 삭제
-            var card = this.Cards.Find(card => card.CardId == cardIdOrNull);
+            var card = this.Cards.Find(card => card.CardId == cardId);
             this.Cards.Remove(card);
         }
 
