@@ -30,6 +30,11 @@ namespace Larva
         /// </summary>
         public event EventHandler ResetEvent;
 
+        /// <summary>
+        /// 플레이어가 투표를 할 때 트리거되는 이벤트
+        /// </summary>
+        public event EventHandler PlayerVoteEvent;
+
         private void Awake()
         {
             // Singleton 패턴
@@ -75,6 +80,7 @@ namespace Larva
 
             // TODO: 요청이 요효한지 확인 (투표가능 여부, 투표가능 팀, 중복투표 확인)
             // TODO: 투표 요청 반영
+            // TODO: PlayerVoteEvent 이벤트 트리거
 
             // [RESPONSE TO]
             // -> fromPlayer.TargetVoteResponse
