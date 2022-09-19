@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
@@ -23,6 +24,11 @@ namespace Larva
         /// 투표 가능한 팀 구분
         /// </summary>
         public TeamType VotableTeam;
+
+        /// <summary>
+        /// 투표 초기화 될 때 트리거되는 이벤트
+        /// </summary>
+        public event EventHandler ResetEvent;
 
         private void Awake()
         {
@@ -51,6 +57,8 @@ namespace Larva
             this.voteData.Clear();
             this.IsVotable = true;
             this.VotableTeam = votableTeam;
+
+            // TODO: ResetEvent 이벤트 트리거
         }
 
         /// <summary>
