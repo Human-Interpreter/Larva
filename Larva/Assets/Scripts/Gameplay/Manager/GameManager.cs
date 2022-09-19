@@ -111,6 +111,11 @@ namespace Larva
         [SyncVar]
         public float PhaseTimeout;
 
+        /// <summary>
+        /// Turn이 변경될 때 트리거 되는 이벤트
+        /// </summary>
+        public event EventHandler TurnChangeEvent;
+
         private void Awake()
         {
             // Singleton 패턴
@@ -142,6 +147,7 @@ namespace Larva
             // TODO: PhaseTimeout이 0이하가 되면 다음 Phase로 변경
 
             // TODO: Phase 사이클이 한 번 돌고 나면 CurrentTurn 증감
+            // TODO: CurrentRurn가 변경되면 TurnChangeEvent 트리거
 
             // TODO: 현재 Phase를 확인하고 각 Phase에 적합한 행동 진행
         }
