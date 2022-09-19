@@ -6,12 +6,6 @@ using Mirror;
 namespace Larva
 {
     /// <summary>
-    /// 카드 액션 이벤트에 호출되는 델리게이트
-    /// </summary>
-    /// <param name="card">이벤트를 호출한 카드</param>
-    public delegate void CardActionEventDelegate(CardObject card);
-
-    /// <summary>
     /// CardManager
     /// 카드 게임에서 딜러 역할을 하는 클래스
     /// (플레이어에게 카드를 나눠주고, 카드를 받아서 액션 함수를 호출함)
@@ -24,11 +18,6 @@ namespace Larva
         public static CardManager Singleton = null;
 
         /// <summary>
-        /// 카드 액션이 발생할때 트리거되는 이벤트
-        /// </summary>
-        public event CardActionEventDelegate CardActionEvent;
-
-        /// <summary>
         /// 게임에 사용되는 카드 데이터를 보관함.
         /// </summary>
         public List<CardData> CardDeck = new();
@@ -37,6 +26,11 @@ namespace Larva
         /// 플레이어가 소유하고 있는 카드를 보관함.
         /// </summary>
         private Dictionary<long, CardIdentity> playerCards = new();
+
+        /// <summary>
+        /// 카드 액션 클래스가 생성될 때 트리거 되는 이벤트
+        /// </summary>
+        public event EventHandler CardActionEvent;
 
         private void Awake()
         {
