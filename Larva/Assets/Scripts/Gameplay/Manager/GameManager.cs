@@ -116,6 +116,11 @@ namespace Larva
         /// </summary>
         public event EventHandler TurnChangeEvent;
 
+        /// <summary>
+        /// State가 변경될 때 트리거되는 이벤트
+        /// </summary>
+        public event EventHandler StateChangeEvent;
+
         private void Awake()
         {
             // Singleton 패턴
