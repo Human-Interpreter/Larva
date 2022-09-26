@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Larva
@@ -27,5 +28,7 @@ namespace Larva
         /// </summary>
         /// <returns>카드 데이터</returns>
         public CardData GetData() => CardManager.Singleton.CardDeck.Find(card => card.Name == this.CardName);
+
+        public Dictionary<string, object> Parameters = new();
     }
 }
