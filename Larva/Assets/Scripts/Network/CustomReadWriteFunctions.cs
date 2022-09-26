@@ -10,7 +10,7 @@ namespace Larva
 {
     public static class CustomReadWriteFunctions
     {
-        public static void WriteMyType(this NetworkWriter writer, Dictionary<string, object> value)
+        public static void WriteParameters(this NetworkWriter writer, Dictionary<string, object> value)
         {
             var outputStream = new MemoryStream();
             MsgPack.Serialize(value, outputStream);
@@ -19,7 +19,7 @@ namespace Larva
             writer.Write(outputStream.ToArray());
         }
 
-        public static Dictionary<string, object> ReadMyType(this NetworkReader reader)
+        public static Dictionary<string, object> ReadParameters(this NetworkReader reader)
         {
             var read = reader.Read<byte[]>();
             var readStream = new MemoryStream(read);
