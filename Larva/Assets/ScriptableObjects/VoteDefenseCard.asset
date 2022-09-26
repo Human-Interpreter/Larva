@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94de63b08bd674aea8da4d68e4ecd161, type: 3}
+  m_Name: VoteDefenseCard
+  m_EditorClassIdentifier: 
+  Name: "\uD22C\uD45C\uBC29\uC5B4\uCE74\uB4DC"
+  Explanation: "\uB2E4\uC74C\uD134\uC5D0 \uD22C\uD45C\uB85C \uC8FD\uB294\uAC83\uC744
+    \uB9C9\uC544\uC900\uB2E4."
+  IsRareCard: 0
+  Team: 0
+  FrontSprite: {fileID: 0}
+  CooldownTurn: 1
+  Priority: 1
+  ActionClassName: 
