@@ -20,4 +20,4 @@ MonoBehaviour:
   FrontSprite: {fileID: 0}
   CooldownTurn: 3
   Priority: 2
-  ActionClassName: 
+  ActionClassName: KillCard
