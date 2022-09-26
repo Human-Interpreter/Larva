@@ -122,7 +122,7 @@ namespace Larva
         /// 플레이어가 소유한 카드를 사용하기 위해 내놓은 함수
         /// </summary>
         /// <param name="player">Player</param>
-        /// <param name="card">사용할 카드</param>
+        /// <param name="cardId">사용할 카드</param>
         [Server]
         public void PutCard(NetworkIdentity identity, Player player, long cardId)
         {
