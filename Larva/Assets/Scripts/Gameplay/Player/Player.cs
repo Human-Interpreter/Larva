@@ -146,12 +146,12 @@ namespace Larva
         /// </summary>
         /// <param name="card">사용할 카드</param>
         [Command]
-        public void CmdPutCard(long cardId)
+        public void CmdPutCard(long cardId, Dictionary<string, object> parameters)
         {
             // [REQUEST TO]
             // -> CardManager.PutCard
 
-            CardManager.Singleton.PutCard(this.netIdentity, this, cardId);
+            CardManager.Singleton.PutCard(this.netIdentity, this, cardId, parameters);
         }
 
         /// <summary>

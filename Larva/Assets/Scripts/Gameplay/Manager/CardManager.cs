@@ -122,14 +122,16 @@ namespace Larva
         /// 플레이어가 소유한 카드를 사용하기 위해 내놓은 함수
         /// </summary>
         /// <param name="player">Player</param>
-        /// <param name="card">사용할 카드</param>
+        /// <param name="cardId">사용할 카드</param>
+        /// <param name="parameters">카드 파라미터</param>
         [Server]
-        public void PutCard(NetworkIdentity identity, Player player, long cardId)
+        public void PutCard(NetworkIdentity identity, Player player, long cardId, Dictionary<string, object> parameters)
         {
             // [REQUEST FROM]
             // player.CmdGetCard -> 
 
             // TODO: 요청에 문제 없는지 확인 후 문제가 있다면 오류 응답을 전송
+            // TODO: CardIdentity.Parameters = parameters;
             // TODO: 대기열에 카드 추가: this.puttedCards.Push()
 
             // [RESPONSE TO]

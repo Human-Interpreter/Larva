@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Larva
@@ -27,5 +28,11 @@ namespace Larva
         /// </summary>
         /// <returns>카드 데이터</returns>
         public CardData GetData() => CardManager.Singleton.CardDeck.Find(card => card.Name == this.CardName);
+
+        /// <summary>
+        /// 카드 사용에 필요한 데이터
+        /// (Mirror를 이용한 네트워크 전송 가능)
+        /// </summary>
+        public Dictionary<string, object> Parameters = new();
     }
 }
