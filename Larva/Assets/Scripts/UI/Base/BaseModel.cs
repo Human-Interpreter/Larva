@@ -6,9 +6,8 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.UI.Base
+namespace Larva.UI.Base
 {
-    [Serializable]
     public abstract class BaseModel : IModel, INotifyPropertyChanged, IEquatable<BaseModel>
     {
         public event PropertyChangedEventHandler PropertyChanged;

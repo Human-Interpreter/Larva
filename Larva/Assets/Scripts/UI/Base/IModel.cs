@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.UI.Base
+namespace Larva.UI.Base
 {
     public interface IModel
     {

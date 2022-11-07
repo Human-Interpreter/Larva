@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Base
+namespace Larva.UI.Base
 {
     public class BaseViewModel : MonoBehaviour, IViewModel, INotifyPropertyChanged
     {

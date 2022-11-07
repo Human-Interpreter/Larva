@@ -5,9 +5,8 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.UI.Base
+namespace Larva.UI.Base
 {
-
     public interface IViewModel
     {
         public void NotifyPropertyChanged(string propertyName);
