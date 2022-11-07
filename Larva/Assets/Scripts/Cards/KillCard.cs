@@ -29,6 +29,9 @@ namespace Larva
             {
                 // 목표 플레이어 살해
                 targetPlayer.IsAlive = false;
+
+                // 해당 카드 삭제
+                Destroy(this);
             }
         }
     }
