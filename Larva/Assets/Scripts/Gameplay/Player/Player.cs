@@ -64,6 +64,12 @@ namespace Larva
         /// <returns></returns>
         public List<CardIdentity> Cards = new();
 
+        /// <summary>
+        /// 방어카드에 의해 보호 받는 상태 저장
+        /// (살인카드에 의한 사망을 1회 방어)
+        /// </summary>
+        public bool IsProtected = false;
+
         // ##########################################
         //  MonoBehaviour Life Cycle
         // ##########################################

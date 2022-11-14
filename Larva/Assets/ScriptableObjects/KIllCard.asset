@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94de63b08bd674aea8da4d68e4ecd161, type: 3}
-  m_Name: KIllCard
+  m_Name: KillCard
   m_EditorClassIdentifier: 
   Name: "\uC0B4\uC778\uCE74\uB4DC"
   Explanation: "\uC774\uBC88\uD134\uC5D0 \uC6D0\uD558\uB294 \uD50C\uB808\uC774\uC5B4\uB97C
@@ -20,4 +20,4 @@ MonoBehaviour:
   FrontSprite: {fileID: 0}
   CooldownTurn: 3
   Priority: 2
-  ActionClassName: 
+  ActionClassName: KillCard

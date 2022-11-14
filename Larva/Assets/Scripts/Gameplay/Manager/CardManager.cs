@@ -32,6 +32,44 @@ namespace Larva
         /// </summary>
         public event EventHandler CardActionEvent;
 
+        /// <summary>
+        /// 카드 테스트 (uREPL 명령어)
+        /// </summary>
+        /// <param name="cardName">카드 이름</param>
+        /// <param name="player">카드 소유 플레이어</param>
+        /// <param name="args">CardIdentity.Parameters 내용을 key, value 차례대로 입력</param>
+        /// <code>TestCard("살인카드" 5, "TargetPlayer", player)</code>
+        [uREPL.Command]
+        static public void TestCard(string cardName, Player player, params object[] args)
+        {
+            try {
+                var card = CardManager.Singleton.CreateCardIdentity(cardName, player);
+                uREPL.Log.Output($"Create a \"{cardName}\" card.");
+
+                if (args.Length > 0) {
+                    if (args.Length % 2 != 0) {
+                        uREPL.Log.Error("Parameter Length is not matched");
+                        return;
+                    }
+
+                    Dictionary<string, object> parameters = new();
+
+                    for (int i = 0; i < args.Length; i += 2) {
+                        parameters[args[i].ToString()] = args[i+1];
+                    }
+
+                    card.Parameters = parameters;
+                    uREPL.Log.Output("Set parameters.");
+                }
+
+                CardManager.Singleton.ActiveCard(card);
+                uREPL.Log.Output("Card was activated!");
+            } catch (Exception error) {
+                uREPL.Log.Error(error.ToString());
+                Debug.LogError(error);
+            }
+        }
+
         private void Awake()
         {
             // Singleton 패턴
@@ -150,29 +188,40 @@ namespace Larva
             {
                 // 카드 식별자를 가져옴
                 var card = this.puttedCards.Pop().Value;
-                // 카드 데이터를 가져옴
-                var data = card.GetData();
 
-                // Reflection을 사용해서 카드 액션 클래스를 불러온다.
-                Type cardActionType = Type.GetType($"Larva.{data.ActionClassName}");
-                
-                if (cardActionType == null)
-                {
-                    // 클래스 명을 찾을 수 없거나 잘못된 클래스 명을 사용.
-                    throw new Exception("cardActionType is null");
-                }
-
-                if (!typeof(MonoBehaviour).IsAssignableFrom(cardActionType))
-                {
-                    // 해당 클래스가 MonoBehaviour를 상속 받지 않음.
-                    throw new Exception("cardActionType is not assignable from MonoBehaviour");
-                }
-
-                // card action 추가
-                card.gameObject.AddComponent(cardActionType);
+                // 카드 활성화
+                this.ActiveCard(card);
 
                 // TODO: CardActionEvent 이벤트 트리거
             }
+        }
+
+        /// <summary>
+        /// 카드 클래스 활성화
+        /// </summary>
+        /// <param name="card">카드 객체</param>
+        private void ActiveCard(CardIdentity card)
+        {
+            // 카드 데이터를 가져옴
+            var data = card.GetData();
+
+            // Reflection을 사용해서 카드 액션 클래스를 불러온다.
+            Type cardActionType = Type.GetType($"Larva.{data.ActionClassName}");
+            
+            if (cardActionType == null)
+            {
+                // 클래스 명을 찾을 수 없거나 잘못된 클래스 명을 사용.
+                throw new Exception("cardActionType is null");
+            }
+
+            if (!typeof(MonoBehaviour).IsAssignableFrom(cardActionType))
+            {
+                // 해당 클래스가 MonoBehaviour를 상속 받지 않음.
+                throw new Exception("cardActionType is not assignable from MonoBehaviour");
+            }
+
+            // card action 추가
+            card.gameObject.AddComponent(cardActionType);
         }
 
         /// <summary>
