@@ -145,7 +145,7 @@ namespace Larva
 
         private void Update()
         {
-            if (!this.isServer)
+            if (!this.isServer || this.State != GameState.Playing)
             {
                 return;
             }
