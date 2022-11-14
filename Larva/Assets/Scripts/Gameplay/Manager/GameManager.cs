@@ -150,15 +150,32 @@ namespace Larva
                 return;
             }
 
-            // TODO: PlayTime 증가
+            // PlayTime 증가
+            this.PlayTime += Time.deltaTime;
 
-            // TODO: PhaseTimeout 감소
+            // PhaseTimeout 감소
+            this.PhaseTimeout -= Time.deltaTime;
 
-            // TODO: PhaseTimeout이 0이하가 되면 다음 Phase로 변경
-            // TODO: Phase가 변경되면 PhaseChangeEvent 트리거
+            // PhaseTimeout이 0이하가 되면 다음 Phase로 변경
+            if (this.PhaseTimeout <= 0) {
+                if (this.Phase == GamePhase.NightCardResult) {
+                    this.Phase = GamePhase.DayDebate;
 
-            // TODO: Phase 사이클이 한 번 돌고 나면 CurrentTurn 증감
-            // TODO: CurrentRurn가 변경되면 TurnChangeEvent 트리거
+                    // Phase 사이클이 한 번 돌고 나면 CurrentTurn 증감
+                    this.CurrentTurn++;
+
+                    // CurrentTurn가 변경되면 TurnChangeEvent 트리거
+                    EventArgs turnChangeEventArgs = new();  // TODO: 현재 Turn을 매개변수로 전송
+                    this.TurnChangeEvent(this, turnChangeEventArgs);
+
+                } else {
+                    this.Phase++;
+                }
+
+                // Phase가 변경되면 PhaseChangeEvent 트리거
+                EventArgs phaseChangeEventArgs = new();  // TODO: 현재 Phase를 매개변수로 전송
+                this.PhaseChangeEvent(this, phaseChangeEventArgs);
+            }
 
             // TODO: 현재 Phase를 확인하고 각 Phase에 적합한 행동 진행
         }
