@@ -44,7 +44,7 @@ namespace Larva
         {
             try {
                 var card = CardManager.Singleton.CreateCardIdentity(cardName, player);
-                uREPL.Log.Output("Create a test card.");
+                uREPL.Log.Output($"Create a \"{cardName}\" card.");
 
                 if (args.Length > 0) {
                     if (args.Length % 2 != 0) {
