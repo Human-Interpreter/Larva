@@ -32,6 +32,44 @@ namespace Larva
         /// </summary>
         public event EventHandler CardActionEvent;
 
+        /// <summary>
+        /// 카드 테스트 (uREPL 명령어)
+        /// </summary>
+        /// <param name="cardName">카드 이름</param>
+        /// <param name="player">카드 소유 플레이어</param>
+        /// <param name="args">CardIdentity.Parameters 내용을 key, value 차례대로 입력</param>
+        /// <code>TestCard("살인카드" 5, "TargetPlayer", player)</code>
+        [uREPL.Command]
+        static public void TestCard(string cardName, Player player, params object[] args)
+        {
+            try {
+                var card = CardManager.Singleton.CreateCardIdentity(cardName, player);
+                uREPL.Log.Output("Create a test card.");
+
+                if (args.Length > 0) {
+                    if (args.Length % 2 != 0) {
+                        uREPL.Log.Error("Parameter Length is not matched");
+                        return;
+                    }
+
+                    Dictionary<string, object> parameters = new();
+
+                    for (int i = 0; i < args.Length; i += 2) {
+                        parameters[args[i].ToString()] = args[i+1];
+                    }
+
+                    card.Parameters = parameters;
+                    uREPL.Log.Output("Set parameters.");
+                }
+
+                CardManager.Singleton.ActiveCard(card);
+                uREPL.Log.Output("Card was activated!");
+            } catch (Exception error) {
+                uREPL.Log.Error(error.ToString());
+                Debug.LogError(error);
+            }
+        }
+
         private void Awake()
         {
             // Singleton 패턴
