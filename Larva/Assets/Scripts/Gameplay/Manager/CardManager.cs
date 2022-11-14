@@ -150,29 +150,40 @@ namespace Larva
             {
                 // 카드 식별자를 가져옴
                 var card = this.puttedCards.Pop().Value;
-                // 카드 데이터를 가져옴
-                var data = card.GetData();
 
-                // Reflection을 사용해서 카드 액션 클래스를 불러온다.
-                Type cardActionType = Type.GetType($"Larva.{data.ActionClassName}");
-                
-                if (cardActionType == null)
-                {
-                    // 클래스 명을 찾을 수 없거나 잘못된 클래스 명을 사용.
-                    throw new Exception("cardActionType is null");
-                }
-
-                if (!typeof(MonoBehaviour).IsAssignableFrom(cardActionType))
-                {
-                    // 해당 클래스가 MonoBehaviour를 상속 받지 않음.
-                    throw new Exception("cardActionType is not assignable from MonoBehaviour");
-                }
-
-                // card action 추가
-                card.gameObject.AddComponent(cardActionType);
+                // 카드 활성화
+                this.ActiveCard(card);
 
                 // TODO: CardActionEvent 이벤트 트리거
             }
+        }
+
+        /// <summary>
+        /// 카드 클래스 활성화
+        /// </summary>
+        /// <param name="card">카드 객체</param>
+        private void ActiveCard(CardIdentity card)
+        {
+            // 카드 데이터를 가져옴
+            var data = card.GetData();
+
+            // Reflection을 사용해서 카드 액션 클래스를 불러온다.
+            Type cardActionType = Type.GetType($"Larva.{data.ActionClassName}");
+            
+            if (cardActionType == null)
+            {
+                // 클래스 명을 찾을 수 없거나 잘못된 클래스 명을 사용.
+                throw new Exception("cardActionType is null");
+            }
+
+            if (!typeof(MonoBehaviour).IsAssignableFrom(cardActionType))
+            {
+                // 해당 클래스가 MonoBehaviour를 상속 받지 않음.
+                throw new Exception("cardActionType is not assignable from MonoBehaviour");
+            }
+
+            // card action 추가
+            card.gameObject.AddComponent(cardActionType);
         }
 
         /// <summary>
