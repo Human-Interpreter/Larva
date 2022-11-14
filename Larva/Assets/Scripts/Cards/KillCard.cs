@@ -32,6 +32,9 @@ namespace Larva
 
                 // 해당 카드 삭제
                 Destroy(this.gameObject);
+            } else {
+                // 목표 플레이어 방어카드 효과 해제
+                targetPlayer.IsProtected = false;
             }
         }
     }
