@@ -31,7 +31,7 @@ namespace Larva
                 targetPlayer.IsAlive = false;
 
                 // 해당 카드 삭제
-                Destroy(this);
+                Destroy(this.gameObject);
             }
         }
     }
