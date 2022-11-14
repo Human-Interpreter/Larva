@@ -126,6 +126,31 @@ namespace Larva
         /// </summary>
         public event EventHandler PhaseChangeEvent;
 
+        /// <summary>
+        /// 플레이어를 찾아주는 함수 (uREPL 명령어)
+        /// </summary>
+        /// <param name="netId">플레이어 netId (기본값 -1)</param>
+        /// <returns>파라미터로 netId을 넣어준 경우에 플레이어 객체 반환, netId가 -1이면 null 반환</returns>
+        [uREPL.Command]
+        static public Player GetPlayer(int netId = -1)
+        {
+            var players = FindObjectsOfType<Player>();
+
+            foreach (var player in players)
+            {
+                if (netId < 0)
+                {
+                    uREPL.Log.Output(player.netId.ToString());
+                }
+                else if (netId == player.netId)
+                {
+                    return player;
+                }
+            }
+
+            return null;
+        }
+
         private void Awake()
         {
             // Singleton 패턴
